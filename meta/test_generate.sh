@@ -2,7 +2,9 @@
 set -o errexit -o nounset -o pipefail
 command -v shellcheck > /dev/null && shellcheck "$0"
 
-REPO_ROOT="$(realpath "$(dirname "$0")/..")"
+REPO_ROOT="$(readlink -f "$(dirname "$0")/..")"
+
+echo "$REPO_ROOT"
 
 TMP_DIR=$(mktemp -d "${TMPDIR:-/tmp}/cw-template.XXXXXXXXX")
 PROJECT_NAME="testgen-local"
