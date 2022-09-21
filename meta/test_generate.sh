@@ -37,3 +37,5 @@ PROJECT_NAME="testgen-local"
     cargo wasm
   )
 )
+
+code "$TMP_DIR"
