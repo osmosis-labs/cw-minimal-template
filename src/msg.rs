@@ -6,6 +6,7 @@ pub struct InstantiateMsg {}
 
 /// Message type for `execute` entry_point
 #[cw_serde]
+#[cfg_attr(feature = "interface", derive(cw_orch::ExecuteFns))]
 pub enum ExecuteMsg {}
 
 /// Message type for `migrate` entry_point
@@ -15,6 +16,7 @@ pub enum MigrateMsg {}
 /// Message type for `query` entry_point
 #[cw_serde]
 #[derive(QueryResponses)]
+#[cfg_attr(feature = "interface", derive(cw_orch::QueryFns))]
 pub enum QueryMsg {
     // This example query variant indicates that any client can query the contract
     // using `YourQuery` and it will return `YourQueryResponse`
