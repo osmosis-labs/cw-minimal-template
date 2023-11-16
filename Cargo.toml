@@ -1,8 +1,8 @@
 [package]
-name = "{{project-name}}"
-version = "0.1.0"
 authors = ["{{authors}}"]
 edition = "2021"
+name = "{{project-name}}"
+version = "0.1.0"
 
 exclude = [
   # Those files are rust-optimizer artifacts. You might want to commit them for convenience but they should not be part of the source code publication.
@@ -16,15 +16,15 @@ exclude = [
 crate-type = ["cdylib", "rlib"]
 
 [profile.release]
-opt-level = 3
-debug = false
-rpath = false
-lto = true
-debug-assertions = false
 codegen-units = 1
-panic = 'abort'
+debug = false
+debug-assertions = false
 incremental = false
+lto = true
+opt-level = 3
 overflow-checks = true
+panic = 'abort'
+rpath = false
 
 [features]
 # for more explicit tests, cargo test --features=backtraces
@@ -40,14 +40,15 @@ optimize = """docker run --rm -v "$(pwd)":/code \
 """
 
 [dependencies]
-cosmwasm-schema = "1.1.2"
-cosmwasm-std = "1.1.2"
-cosmwasm-storage = "1.1.2"
-cw-storage-plus = "0.13.2"
-cw2 = "0.13.2"
-schemars = "0.8.8"
-serde = { version = "1.0.137", default-features = false, features = ["derive"] }
-thiserror = { version = "1.0.31" }
+cosmwasm-schema = "1.5.0"
+cosmwasm-std = {version = "1.5.0", features = [
+  "cosmwasm_1_3", # "cosmwasm_1_4" # <- Enable this if you only deploy to chains that have CosmWasm 1.4 or higher
+]}
+cw-storage-plus = "1.1.0"
+cw2 = "1.1.1"
+schemars = "0.8.15"
+serde = {version = "1.0.189", default-features = false, features = ["derive"]}
+thiserror = {version = "1.0.49"}
 
 [dev-dependencies]
-cw-multi-test = "0.13.2"
+cw-multi-test = "0.18.0"
