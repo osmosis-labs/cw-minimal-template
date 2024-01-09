@@ -31,6 +31,8 @@ rpath = false
 backtraces = ["cosmwasm-std/backtraces"]
 # use library feature to disable all instantiate/execute/query exports
 library = []
+# use interface feature to expose structure for contract orchestration
+interface = ["dep:cw-orch"]
 
 [package.metadata.scripts]
 optimize = """docker run --rm -v "$(pwd)":/code \
@@ -41,14 +43,17 @@ optimize = """docker run --rm -v "$(pwd)":/code \
 
 [dependencies]
 cosmwasm-schema = "1.5.0"
-cosmwasm-std = {version = "1.5.0", features = [
+cosmwasm-std = { version = "1.5.0", features = [
   "cosmwasm_1_3", # "cosmwasm_1_4" # <- Enable this if you only deploy to chains that have CosmWasm 1.4 or higher
-]}
+] }
 cw-storage-plus = "1.1.0"
 cw2 = "1.1.1"
 schemars = "0.8.15"
-serde = {version = "1.0.189", default-features = false, features = ["derive"]}
-thiserror = {version = "1.0.49"}
+serde = { version = "1.0.189", default-features = false, features = ["derive"] }
+thiserror = { version = "1.0.49" }
+
+cw-orch = { version = "0.19.1", optional = true }
 
 [dev-dependencies]
+{{project-name}} = {path = ".", features=["interface"]}
 cw-multi-test = "0.18.0"
