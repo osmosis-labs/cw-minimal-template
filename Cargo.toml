@@ -51,8 +51,9 @@ schemars = "0.8.8"
 serde = { version = "1.0.137", default-features = false, features = ["derive"] }
 thiserror = { version = "1.0.31" }
 
-cw-orch = { version = "0.18.1", optional = true }
+cw-orch = { version = "0.19.1", optional = true }
 
 [dev-dependencies]
-cw-multi-test = "0.13.2"
+
 {{project-name}} = {path = ".", features=["interface"]}
+cw-multi-test = "0.13.2"
